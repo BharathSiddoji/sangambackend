@@ -19,7 +19,9 @@ router.post('/signup',async(req,res)=>{
           httpOnly: true, // The cookie is only accessible by the server
           secure: true, // The cookie will only be sent over HTTPS
           sameSite: 'none', // The cookie will be sent with both same-site and cross-site requests
-          maxAge: 24 * 60 * 60 * 1000 // The cookie will expire in 1 day
+           // The cookie will expire in 1 day
+          maxAge: 24 * 60 * 60 * 1000,
+          path: '/'
         });
         res
           .status(201)
@@ -45,10 +47,11 @@ router.post('/login',async(req,res)=>{
         }
          const token = createToken(user._id);
          res.cookie("sangamToken", token, {
-           withCredentials: true,
-           httpOnly: false,
-           secure:true,
-           sameSite: 'none'
+          withCredentials: true,
+          httpOnly: false,
+          secure: true,
+          sameSite: 'none',
+          path: '/'
          });
          res.status(201).json({ message: "User logged in successfully", success: true });
          
