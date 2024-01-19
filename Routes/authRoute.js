@@ -8,12 +8,12 @@ const createToken = require('../utills/createToken.js')
 router.post('/signup',async(req,res)=>{
 
     try {
-        const { email, password, username, createdAt } = req.body;
+        const { email, password, name, createdAt } = req.body;
         const existingUser = await User.findOne({ email });
         if (existingUser) {
           return res.json({ message: "User already exists" });
         }
-        const user = await User.create({ email, password, username, createdAt });
+        const user = await User.create({ email, password, name, createdAt });
         const token = createToken(user._id);
         res.cookie('sangamToken', token, {
           httpOnly: true, // The cookie is only accessible by the server
@@ -23,7 +23,7 @@ router.post('/signup',async(req,res)=>{
         });
         res
           .status(201)
-          .json({ message: "User signed in successfully", success: true, user });
+          .json({ message: "User signed in successfully", success: true });
         
       } catch (error) {
         console.error(error);
