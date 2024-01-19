@@ -53,7 +53,7 @@ router.post('/login',async(req,res)=>{
           sameSite: 'none',
           path: '/'
          });
-         res.status(201).json({ message: "User logged in successfully", success: true });
+         res.status(201).json({ message: "User logged in successfully", success: true ,token:token});
          
       } catch (error) {
         console.error(error);
