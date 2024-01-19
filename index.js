@@ -17,7 +17,7 @@ mongoose.connect(MONGO_URI).then(() => {
 });
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173","https://tttsangam.in"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
     exposedHeaders: ["set-cookie"],
