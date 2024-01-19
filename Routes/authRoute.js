@@ -47,7 +47,8 @@ router.post('/login',async(req,res)=>{
          res.cookie("sangamToken", token, {
            withCredentials: true,
            httpOnly: false,
-           secure:true
+           secure:true,
+           sameSite: 'none'
          });
          res.status(201).json({ message: "User logged in successfully", success: true });
          
